@@ -2,8 +2,11 @@
 const MAX_HISTORY_LIST_LENGTH = 9;
 
 // Create a new date instance dynamically with JS
-const d = new Date();
-const newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+const getCurrentDateAndTime = () => {
+  const d = new Date();
+  const newDateAndTime = d.toLocaleString();
+  return newDateAndTime
+}
 
 // Personal API Key for OpenWeatherMap API
 const apiKey = 'a82da9fd33ad3905f25a5cf58bce890f';
@@ -51,6 +54,11 @@ const getData = async (url = '') => {
   }
 };
 
+const kelvinToFahrenheit = (kelvin) => {
+  let fahrenheit = (kelvin - 273.15)*(9/5) + 32;
+  return fahrenheit
+};
+
 const updateHistory = (data) => {
   data = data.slice(0, MAX_HISTORY_LIST_LENGTH);
   const ol = document.createElement('ol');
@@ -93,7 +101,7 @@ const getWeatherPostDataUpdateUI = () => {
   console.log('Step 1: getData');
   getData(createWeatherEndpoint(document.querySelector('#zip').value)).then(function(value){
     console.log('Step 2: postData');
-    const postPromise = postData('/add', {temperature: value.main.temp, date: newDate, userResponse: document.querySelector('#feelings').value});
+    const postPromise = postData('/add', {temperature: `${kelvinToFahrenheit(value.main.temp).toFixed(1)}°F`, date: getCurrentDateAndTime(), userResponse: document.querySelector('#feelings').value});
     console.log('postPromise');
     console.log(postPromise);
     return postPromise;
