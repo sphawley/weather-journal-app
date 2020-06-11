@@ -45,9 +45,3 @@ const addEntry = (request, response) => {
 
 // Post Route
 app.post('/add', addEntry);
-
-// Jest example
-const sum = (a, b) => {
-  return a + b;
-};
-module.exports = sum;
