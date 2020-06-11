@@ -5,9 +5,14 @@ body{
 
 #app{
   display: grid;
-  grid-auto-rows: minmax(150px, auto);
-  /* grid-template-columns:  */
-  height:100vh;
+  grid-template-rows: 75px 125px 450px 150px;
+  grid-template-columns: 1fr 500px 300px 1fr;
+  grid-template-areas:
+  ". headline history ."
+  ". zip history ."
+  ". feel history ."
+  ". entry history .";
+  height: 100vh;
   background: #f23557;
   color: #f0d43a;
   justify-content: center;
@@ -17,11 +22,30 @@ body{
 }
 
 .holder{
-
+  border: 1px solid black;
 }
 
 .entry{
+  grid-area: entry;
   background: rgba(59, 74, 107, .4);
+}
+
+.zip {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-area: zip;
+}
+
+.feel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-area: feel;
+}
+
+.history {
+  grid-area: history;
 }
 
 #entryHolder{
@@ -41,8 +65,9 @@ body{
 }
 
 .headline {
-
+  grid-area: headline;
 }
+
 .title{
 
 }

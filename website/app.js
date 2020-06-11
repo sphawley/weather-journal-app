@@ -51,8 +51,8 @@ const getData = async (url = '') => {
 };
 
 const updateUI = async () => {
-  const data = await getData('/all');
   try {
+    const data = await getData('/all');
     console.log('Got all data');
     console.log(data);
     document.querySelector('#date').innerHTML = data[data.length -1].date;
