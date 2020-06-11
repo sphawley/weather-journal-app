@@ -14,14 +14,8 @@ const createWeatherEndpoint = (zipCode) => {
   return `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${apiKey}`;
 };
 
-
-/* Function to GET Web API Data */
-const getCurrentWeatherByZip = (zipCode) => getData(createWeatherEndpoint(zipCode)).main.temp;
-
 /* Function to POST data */
 const postData = async (url = '', data = {}) => {
-  console.log('Posting data');
-  console.log(data);
   const response = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
@@ -33,8 +27,6 @@ const postData = async (url = '', data = {}) => {
   
   try {
     const newData = await response.json();
-    console.log('Server response from post');
-    console.log(newData);
     return newData;
   } catch (error) {
     console.log('error in post. error: ', error);
@@ -46,8 +38,6 @@ const getData = async (url = '') => {
   const response = await fetch(url);
   try {
     const data = await response.json();
-    console.log('Received data');
-    console.log(data);
     if (data.hasOwnProperty('cod') && data.cod[0] == '4') {
       alert("Something went wrong.\nDid you enter a valid zipcode?");
     }
@@ -90,13 +80,10 @@ const updateHistory = (data) => {
 const updateUI = async () => {
   try {
     const data = await getData('/all');
-    console.log('Got all data');
-    console.log(data);
     if (data.length > 0) {
       document.querySelector('#recentDate').innerHTML = data[data.length -1].date;
       document.querySelector('#recentTemp').innerHTML = data[data.length -1].temperature;
       document.querySelector('#recentContent').innerHTML = data[data.length -1].userResponse;
-      console.log('Updating history');
       updateHistory(data.reverse().slice(1));
     }
     return data;
@@ -105,6 +92,7 @@ const updateUI = async () => {
   }
 };
 
+/* Function called by event listener */
 const submitForm = () => {
   if ((document.querySelector('#zip').value != '') && (document.querySelector('#feelings').value != '')) {
     getWeatherPostDataUpdateUI();
@@ -113,24 +101,16 @@ const submitForm = () => {
   }
 }
 
-/* Function called by event listener */
 const getWeatherPostDataUpdateUI = () => {
-  console.log('Step 1: getData');
-  getData(createWeatherEndpoint(document.querySelector('#zip').value)).then(function(value){
-    console.log('Step 2: postData');
+  getData(createWeatherEndpoint(document.querySelector('#zip').value)).then((value) => {
     const postPromise = postData(
       '/add',
       {temperature: `${kelvinToFahrenheit(value.main.temp).toFixed(1)}°F`,
       date: getCurrentDateAndTime(), userResponse: document.querySelector('#feelings').value}
       );
-    console.log('postPromise');
-    console.log(postPromise);
     return postPromise;
-  }).then(function(value){
-      console.log('Step 3: updateUI');
+  }).then(() => {
       const updatePromise = updateUI();
-      console.log('updatePromise');
-      console.log(updatePromise);
     }
   );
 }

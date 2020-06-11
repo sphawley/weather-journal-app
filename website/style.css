@@ -1,9 +1,9 @@
-body{
+body {
   background: #D4CDC4;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-#app{
+#app {
   display: grid;
   grid-template-rows: 75px 110px 275px 230px;
   grid-template-columns: 1fr 500px 400px 1fr;
@@ -20,7 +20,7 @@ body{
   font-family: 'Oswald', sans-serif;
 }
 
-.entry{
+.entry {
   grid-area: entry;
   background: #AC8886;
   border-radius: 5px;
@@ -48,7 +48,7 @@ body{
   padding: 8px;
 }
 
-.entryHolder{
+.entryHolder {
   font-size: 20px;
   font-family: 'Ranga', sans-serif;
   color: #C6C5A9;
@@ -62,11 +62,11 @@ body{
   font-size: 32px;
 }
 
-.date{
+.date {
   color: #626141;
 }
 
-.temp{
+.temp {
   font-size: 26px;
 }
 
@@ -86,17 +86,17 @@ li {
   color: #6C4037;
 }
 
-.title{
+.title {
   font-size: 36px;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
+label {
   display:block;
   font-size: 27px;
 }
 
-input{
+input {
   display:block;
   height: 60px;
   width: 200px;
@@ -109,7 +109,7 @@ input{
   padding: 8px;
 }
 
-button{
+button {
   width: 300px;
   height: 100px;
   background: #881606;
@@ -121,11 +121,12 @@ button{
   box-shadow: 2px 4px 5px #444;
   margin-top: 15px;
 }
-h1{
+
+h1 {
   font-size: 36px;
 }
 
-textarea{
+textarea {
   background:#3A4535;
   color: #D6D5C2;
   font-size: 25px;
@@ -133,6 +134,7 @@ textarea{
   border-radius: 5px;
   padding: 8px;
 }
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -140,6 +142,7 @@ textarea:focus,
 button:focus {
   outline: none;
 }
+
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
   color: #9D9B6C;

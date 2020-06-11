@@ -26,12 +26,6 @@ const port = 8080;
 const listening = () => console.log(`listening on port: ${port}`);
 app.listen(port, listening);
 
-// Callback to debug
-app.get('/test', (request, response) => {
-  console.log('received test');
-  response.send('working');
-});
-
 // Callback function to complete GET '/all'
 const sendData = (request, response) => {
   response.send(projectData);
