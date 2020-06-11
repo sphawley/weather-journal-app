@@ -1,5 +1,5 @@
 /* Global Variables */
-const MAX_HISTORY_LIST_LENGTH = 9;
+const MAX_HISTORY_LIST_LENGTH = 5;
 
 // Create a new date instance dynamically with JS
 const getCurrentDateAndTime = () => {
@@ -68,9 +68,13 @@ const updateHistory = (data) => {
   ol.className = 'history__list';
   for (const datum of data) {
     const li = document.createElement('li');
+    li.className = 'entryHolder';
     const dateDiv = document.createElement('div');
+    dateDiv.className = 'date';
     const tempDiv = document.createElement('div');
+    tempDiv.className = 'temp';
     const contentDiv = document.createElement('div');
+    contentDiv.className = 'content';
     dateDiv.innerHTML = datum.date;
     tempDiv.innerHTML = datum.temperature;
     contentDiv.innerHTML = datum.userResponse;
@@ -89,9 +93,9 @@ const updateUI = async () => {
     console.log('Got all data');
     console.log(data);
     if (data.length > 0) {
-      document.querySelector('#date').innerHTML = data[data.length -1].date;
-      document.querySelector('#temp').innerHTML = data[data.length -1].temperature;
-      document.querySelector('#content').innerHTML = data[data.length -1].userResponse;
+      document.querySelector('#recentDate').innerHTML = data[data.length -1].date;
+      document.querySelector('#recentTemp').innerHTML = data[data.length -1].temperature;
+      document.querySelector('#recentContent').innerHTML = data[data.length -1].userResponse;
       console.log('Updating history');
       updateHistory(data.reverse().slice(1));
     }

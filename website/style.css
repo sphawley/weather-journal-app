@@ -1,75 +1,89 @@
 body{
-  background: #fffff8;
+  background: #D4CDC4;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app{
   display: grid;
-  grid-template-rows: 75px 125px 450px 150px;
-  grid-template-columns: 1fr 500px 300px 1fr;
+  grid-template-rows: 75px 110px 275px 230px;
+  grid-template-columns: 1fr 500px 400px 1fr;
   grid-template-areas:
   ". headline history ."
   ". zip history ."
   ". feel history ."
   ". entry history .";
   height: 100vh;
-  background: #f23557;
-  color: #f0d43a;
+  color: #3A4535;
   justify-content: center;
-  grid-gap: 1em;
-  font-size: 20px;
+  grid-gap: 15px;
+  font-weight: bold;
   font-family: 'Oswald', sans-serif;
-}
-
-.holder{
-  border: 1px solid black;
 }
 
 .entry{
   grid-area: entry;
-  background: rgba(59, 74, 107, .4);
+  background: #AC8886;
+  border-radius: 5px;
+  padding: 8px;
 }
 
 .zip {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   grid-area: zip;
 }
 
 .feel {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   grid-area: feel;
 }
 
 .history {
+  background: #AC8886;
   grid-area: history;
+  border-radius: 5px;
+  padding: 8px;
 }
 
-#entryHolder{
-
+.entryHolder{
+  font-size: 20px;
+  font-family: 'Ranga', sans-serif;
+  color: #C6C5A9;
 }
 
-#date{
-
+#recentEntry {
+  font-size: 26px;
 }
 
-#temp{
-
+#recentTemp {
+  font-size: 32px;
 }
 
-#content{
+.date{
+  color: #626141;
+}
 
+.temp{
+  font-size: 26px;
+}
+
+ol {
+  list-style-type: circle;
+  color: #626141;
 }
 
 .headline {
   grid-area: headline;
+  font-size: 50px;
+  font-weight: bold;
+  color: #6C4037;
 }
 
 .title{
-
+  font-size: 36px;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
@@ -81,33 +95,39 @@ label{
 input{
   display:block;
   height: 60px;
-  width: 320px;
-  background:#22b2da;
-  color: #f0d43a;
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  width: 200px;
+  background:#3A4535;
+  color: #D6D5C2;
+  font-size: 30px;
+  font-family: 'Ranga', sans-serif;
   border: none;
+  border-radius: 5px;
+  padding: 8px;
 }
 
 button{
-  width: 400px;
+  width: 300px;
   height: 100px;
-  background: #3b4a6b;
-  color: #f0d43a;
+  background: #881606;
+  color: #D6D5C2;
   font-size: 26px;
   font-family: 'Oswald', sans-serif;
-  border: none;
+  border-radius: 30px;
+  border: 2px solid #333;
   box-shadow: 2px 4px 5px #444;
+  margin-top: 15px;
 }
 h1{
   font-size: 36px;
 }
 
 textarea{
-  background:#22b2da;
-  color: #f0d43a;
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  background:#3A4535;
+  color: #D6D5C2;
+  font-size: 25px;
+  font-family: 'Ranga', sans-serif;
+  border-radius: 5px;
+  padding: 8px;
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
@@ -118,19 +138,13 @@ button:focus {
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
-  color: #f0d43a; 
-  font-family: 'Oswald', sans-serif;
-
+  color: #9D9B6C;
 } 
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-  color: #f0d43a; 
-  font-family: 'Oswald', sans-serif;
-
+  color: #9D9B6C;
 } 
 
 ::-ms-input-placeholder { /* Microsoft Edge */ 
-  color: #f0d43a; 
-  font-family: 'Oswald', sans-serif;
-
+  color: #9D9B6C;
 } 
