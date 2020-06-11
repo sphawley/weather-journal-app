@@ -75,6 +75,10 @@ ol {
   color: #626141;
 }
 
+li {
+  margin-bottom: 8px;
+}
+
 .headline {
   grid-area: headline;
   font-size: 50px;
@@ -139,12 +143,36 @@ button:focus {
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
   color: #9D9B6C;
-} 
+}
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
   color: #9D9B6C;
-} 
+}
 
 ::-ms-input-placeholder { /* Microsoft Edge */ 
   color: #9D9B6C;
-} 
+}
+
+@media (max-width: 35em) {
+  #app{
+    display: grid;
+    grid-template-rows: 75px 110px 275px 230px 740px;
+    grid-template-columns: 1fr 400px 1fr;
+    grid-template-areas:
+    ". headline ."
+    ". zip ."
+    ". feel ."
+    ". entry ."
+    ". history .";
+    height: 100vh;
+    color: #3A4535;
+    justify-content: center;
+    grid-gap: 15px;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  .headline {
+    font-size: 46px;
+  }
+}
