@@ -48,6 +48,9 @@ const getData = async (url = '') => {
     const data = await response.json();
     console.log('Received data');
     console.log(data);
+    if (data.hasOwnProperty('cod') && data.cod[0] == '4') {
+      alert("Something went wrong.\nDid you enter a valid zipcode?");
+    }
     return data;
   } catch (error) {
     console.log('error in get. error: ', error);
@@ -101,6 +104,8 @@ const updateUI = async () => {
 const submitForm = () => {
   if ((document.querySelector('#zip').value != '') && (document.querySelector('#feelings').value != '')) {
     getWeatherPostDataUpdateUI();
+  } else {
+    alert("Zipcode and feelings are required.");
   }
 }
 
@@ -109,7 +114,11 @@ const getWeatherPostDataUpdateUI = () => {
   console.log('Step 1: getData');
   getData(createWeatherEndpoint(document.querySelector('#zip').value)).then(function(value){
     console.log('Step 2: postData');
-    const postPromise = postData('/add', {temperature: `${kelvinToFahrenheit(value.main.temp).toFixed(1)}°F`, date: getCurrentDateAndTime(), userResponse: document.querySelector('#feelings').value});
+    const postPromise = postData(
+      '/add',
+      {temperature: `${kelvinToFahrenheit(value.main.temp).toFixed(1)}°F`,
+      date: getCurrentDateAndTime(), userResponse: document.querySelector('#feelings').value}
+      );
     console.log('postPromise');
     console.log(postPromise);
     return postPromise;
