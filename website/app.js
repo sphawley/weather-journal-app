@@ -85,16 +85,24 @@ const updateUI = async () => {
     const data = await getData('/all');
     console.log('Got all data');
     console.log(data);
-    document.querySelector('#date').innerHTML = data[data.length -1].date;
-    document.querySelector('#temp').innerHTML = data[data.length -1].temperature;
-    document.querySelector('#content').innerHTML = data[data.length -1].userResponse;
-    console.log('Updating history');
-    updateHistory(data.reverse().slice(1));
+    if (data.length > 0) {
+      document.querySelector('#date').innerHTML = data[data.length -1].date;
+      document.querySelector('#temp').innerHTML = data[data.length -1].temperature;
+      document.querySelector('#content').innerHTML = data[data.length -1].userResponse;
+      console.log('Updating history');
+      updateHistory(data.reverse().slice(1));
+    }
     return data;
   } catch (error) {
     console.log('error in updateUI. error: ', error);
   }
 };
+
+const submitForm = () => {
+  if ((document.querySelector('#zip').value != '') && (document.querySelector('#feelings').value != '')) {
+    getWeatherPostDataUpdateUI();
+  }
+}
 
 /* Function called by event listener */
 const getWeatherPostDataUpdateUI = () => {
@@ -115,7 +123,7 @@ const getWeatherPostDataUpdateUI = () => {
 }
 
 // Event listener to add function to existing HTML DOM element
-document.querySelector('#generate').addEventListener('click', getWeatherPostDataUpdateUI);
+document.querySelector('#generate').addEventListener('click', submitForm);
 
 window.addEventListener('load', () => {
   updateUI();
