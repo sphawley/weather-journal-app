@@ -1,4 +1,5 @@
 /* Global Variables */
+const MAX_HISTORY_LIST_LENGTH = 9;
 
 // Create a new date instance dynamically with JS
 const d = new Date();
@@ -50,6 +51,27 @@ const getData = async (url = '') => {
   }
 };
 
+const updateHistory = (data) => {
+  data = data.slice(0, MAX_HISTORY_LIST_LENGTH);
+  const ol = document.createElement('ol');
+  ol.className = 'history__list';
+  for (const datum of data) {
+    const li = document.createElement('li');
+    const dateDiv = document.createElement('div');
+    const tempDiv = document.createElement('div');
+    const contentDiv = document.createElement('div');
+    dateDiv.innerHTML = datum.date;
+    tempDiv.innerHTML = datum.temperature;
+    contentDiv.innerHTML = datum.userResponse;
+    li.appendChild(dateDiv);
+    li.appendChild(tempDiv);
+    li.appendChild(contentDiv);
+    ol.appendChild(li);
+  }
+  document.querySelector('.history').removeChild(document.querySelector('.history .history__list'));
+  document.querySelector('.history').appendChild(ol);
+};
+
 const updateUI = async () => {
   try {
     const data = await getData('/all');
@@ -58,6 +80,8 @@ const updateUI = async () => {
     document.querySelector('#date').innerHTML = data[data.length -1].date;
     document.querySelector('#temp').innerHTML = data[data.length -1].temperature;
     document.querySelector('#content').innerHTML = data[data.length -1].userResponse;
+    console.log('Updating history');
+    updateHistory(data.reverse().slice(1));
     return data;
   } catch (error) {
     console.log('error in updateUI. error: ', error);
@@ -84,3 +108,7 @@ const getWeatherPostDataUpdateUI = () => {
 
 // Event listener to add function to existing HTML DOM element
 document.querySelector('#generate').addEventListener('click', getWeatherPostDataUpdateUI);
+
+window.addEventListener('load', () => {
+  updateUI();
+});

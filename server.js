@@ -1,5 +1,6 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData = [];
+let projectData = [];
+const MAX_PROJECT_DATA_LENGTH = 20;
 
 // Require Express to run server and routes
 const express = require('express');
@@ -43,6 +44,9 @@ app.get('/all', sendData);
 const addEntry = (request, response) => {
   projectData.push(request.body);
   response.send({ response: 'Entry saved.' });
+  if (projectData.length > MAX_PROJECT_DATA_LENGTH) {
+    projectData = projectData.slice(projectData.length - MAX_PROJECT_DATA_LENGTH);
+  }
 };
 
 // Post Route
