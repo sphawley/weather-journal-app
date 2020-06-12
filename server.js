@@ -22,8 +22,11 @@ app.use(cors());
 app.use(express.static('website'));
 
 // Spin up the server
-const port = 8080;
 const listening = () => console.log(`listening on port: ${port}`);
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 app.listen(port, listening);
 
 // Callback function to complete GET '/all'
