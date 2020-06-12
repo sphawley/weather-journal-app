@@ -7,3 +7,5 @@ The web app takes in a zipcode and user mood data to create a journal entry whic
 Recent posts are saved and viewable from the page. The temperature at the given zipcode is pulled from https://openweathermap.org
 
 This project is part of the Front End Developer course at Udacity
+
+The app is currently deployed on Heroku at https://weather-journal-app-1.herokuapp.com
